@@ -79,6 +79,9 @@ html {
 .main {
   padding: 0px 11vw;
   font-family: "Lato", sans-serif;
+  @media only screen and (max-width: 1120px) {
+    padding: 0px 5vw;
+  }
 }
 .job_list {
   width: 100%;

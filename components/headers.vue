@@ -15,15 +15,15 @@
           placeholder="Filter by title, companies, expertise..."
         />
       </div>
-      <div>
+      <div class="location">
         <img src="@/assets/images/location.svg" alt="" />
         <input type="text" placeholder="Filter by location..." />
       </div>
-      <div>
+      <div class="fulltime">
         <input type="checkbox" id="fulltime" name="fulltime" />
-        <label for="fulltime">Full Time Only</label>
+        <label class="fulltime" for="fulltime"></label>
       </div>
-      <div>
+      <div class="submit">
         <input type="submit" value="Search" class="btn" />
       </div>
     </div>
@@ -47,6 +47,9 @@ export default {
   border-radius: 0 0 0 4rem;
   position: relative;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+  @media only screen and (max-width: 1120px) {
+    padding: 3rem 5vw;
+  }
 }
 .searchbox {
   position: absolute;
@@ -56,6 +59,16 @@ export default {
   border-radius: 0.4rem;
   bottom: -3rem;
   width: 77vw;
+  @media only screen and (max-width: 1120px) {
+    width: 90vw;
+  }
+  @media only screen and (max-width: 768px) {
+    .location,
+    .fulltime,
+    .submit {
+      display: none;
+    }
+  }
 
   div {
     vertical-align: middle;
@@ -110,5 +123,11 @@ export default {
 .nav-right {
   display: flex;
   justify-content: flex-end;
+}
+.fulltime::after {
+  content: "Full time Only";
+  @media only screen and (max-width: 1120px) {
+    content: "Full time";
+  }
 }
 </style>
