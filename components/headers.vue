@@ -19,7 +19,7 @@
         <img src="@/assets/images/location.svg" alt="" />
         <input type="text" placeholder="Filter by location..." />
       </div>
-      <div class="fulltime">
+      <div>
         <input type="checkbox" id="fulltime" name="fulltime" />
         <label class="fulltime" for="fulltime"></label>
       </div>
@@ -42,7 +42,7 @@ export default {
 .headers {
   background-image: url("~@/assets/images/header_bg.png");
   background-repeat: repeat;
-  background-size: contain;
+  background-size: cover;
   padding: 3rem 11vw;
   border-radius: 0 0 0 4rem;
   position: relative;
@@ -125,9 +125,11 @@ export default {
   justify-content: flex-end;
 }
 .fulltime::after {
-  content: "Full time Only";
   @media only screen and (max-width: 1120px) {
     content: "Full time";
+  }
+  @media only screen and (min-width: 1120px) {
+    content: "Full time Only";
   }
 }
 </style>

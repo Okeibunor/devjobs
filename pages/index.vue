@@ -65,11 +65,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Lato:wght@300;400&display=swap");
 $grey_background: #f5f6f8;
 html {
-  scroll-behavior: smooth;
   background: $grey_background;
 }
 .container {
