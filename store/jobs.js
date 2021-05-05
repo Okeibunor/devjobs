@@ -16,7 +16,7 @@ export const actions = {
   fetchJobs({ commit }) {
     return new Promise((resolve, reject) => {
       commit('job_request')
-      axios.get(`https://jobs.github.com/positions.json`)
+      axios.get(`/api/positions.json`)
         .then(res => {
           commit('SET_JOBS', res.data)
           commit('job_request_success')
@@ -29,7 +29,7 @@ export const actions = {
     })
   },
   fetchMoreJobs({ commit }, page) {
-    axios.get(`https://jobs.github.com/positions.json?page=2`).then(res => {
+    axios.get(`/api/positions.json?page=2`).then(res => {
       commit('ADD_JOBS', res.data)
       resolve(res)
     }).catch(err => {
@@ -40,7 +40,7 @@ export const actions = {
   fetchJob({ commit, state }, id) {
     return new Promise((resolve, reject) => {
       commit('job_request')
-      axios.get(`https://jos.github.com/positions/${id}.json?markdown=true`)
+      axios.get(`/api/positions/${id}.json?markdown=true`)
         .then(res => {
           commit('SET_JOB', res.data)
           commit('job_request_success')
