@@ -1,5 +1,5 @@
 [[redirects]]
-from = "*/api/"
+from = "https://youthful-goldstine-6e09bc.netlify.app/api/"
 to = "https://jobs.github.com"
 status = 200
 force = true
