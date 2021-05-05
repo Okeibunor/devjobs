@@ -18,6 +18,8 @@
         <a class="job-header-link" v-bind:href="company_site">Company Site</a>
       </div>
     </div>
+    <br/>
+    <div class="job-body"></div>
   </div>
 </template>
 

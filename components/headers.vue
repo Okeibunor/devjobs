@@ -51,7 +51,7 @@ export default {
 .searchbox {
   position: absolute;
   display: grid;
-  grid-template-columns: 4fr 3.5fr 1.5fr 1fr;
+  grid-template-columns: 4fr 3.5fr 2fr 1fr;
   background-color: #ffffff;
   border-radius: 0.4rem;
   bottom: -3rem;
@@ -59,7 +59,7 @@ export default {
 
   div {
     vertical-align: middle;
-    padding: 20px;
+    padding: 1rem;
     &:nth-of-type(2) {
       border-right: 2px solid #e4e4e4;
     }
