@@ -1,7 +1,7 @@
 <template>
   <div class="headers">
     <div class="nav">
-      <NuxtLink to="/" class="icon">devjobs</NuxtLink>
+      <NuxtLink to="/" class="icon">devgigs</NuxtLink>
       <div class="nav-right">
         <theme-switch />
       </div>

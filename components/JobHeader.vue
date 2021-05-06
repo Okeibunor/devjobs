@@ -1,7 +1,7 @@
 <template>
   <div class="headers">
     <div class="nav">
-      <NuxtLink to="/" class="icon">devjobs</NuxtLink>
+      <NuxtLink to="/" class="icon">devgigs</NuxtLink>
       <div class="nav-right">
         <theme-switch />
       </div>
@@ -48,6 +48,11 @@ h3 {
   border-radius: 0 0 0 4rem;
   position: relative;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+
+  @media screen and (max-width: 768px) {
+    padding: 3.5rem 5vw 0;
+    border-radius: 0;
+  }
 }
 
 .icon {
@@ -76,6 +81,12 @@ h3 {
   background-color: #ffffff;
   min-height: 5rem;
   z-index: 10;
+  @media screen and (max-width: 768px) {
+    position: relative;
+    width: 90vw;
+    left: 0;
+    padding: 10vw 0;
+  }
 }
 
 .company-logo {
@@ -84,6 +95,14 @@ h3 {
   object-fit: cover;
   border-radius: 10px 0 0 10px;
   background-color: rgba(128, 0, 128, 0.055);
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    top: -30px;
+    left: calc((100% - 70px) / 2);
+  }
 }
 .job-header-body {
   display: flex;
@@ -91,10 +110,18 @@ h3 {
   align-items: center;
   width: 90%;
   padding: 0 1.5em;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+  }
 
   div {
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 768px) {
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 .job-header-link {
@@ -109,5 +136,8 @@ h3 {
 .faint-job-link {
   color: $text_grey;
   text-decoration: none;
+  @media screen and (max-width: 768px) {
+    margin: 1rem;
+  }
 }
 </style>

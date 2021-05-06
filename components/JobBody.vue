@@ -22,10 +22,7 @@
       <h3>How to Apply</h3>
       <br />
       <div>
-        <vue-simple-markdown
-          :source="how_to_apply"
-          style="color: white"
-        ></vue-simple-markdown>
+        <vue-simple-markdown :source="how_to_apply"></vue-simple-markdown>
       </div>
     </div>
     <div class="job-bottom">
@@ -118,6 +115,9 @@ $text_purple: #7172c4;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
   background: #ffffff !important;
   border-radius: 10px;
+  @media screen and (max-width: 768px) {
+    margin: 6rem 5vw 2rem;
+  }
 }
 .pre_title {
   color: $text_grey;
@@ -140,6 +140,13 @@ $text_purple: #7172c4;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    .btn {
+      width: 100%;
+      margin: 2rem 0;
+    }
+  }
 }
 .job_title {
   font-weight: 600;
@@ -165,6 +172,9 @@ $text_purple: #7172c4;
   color: #ffffff;
   border-radius: 7px;
   margin: 0 24.45vw;
+  @media screen and (max-width: 768px) {
+    margin: 0 5vw;
+  }
 }
 .job-bottom {
   display: flex;
@@ -173,5 +183,15 @@ $text_purple: #7172c4;
   padding: 1rem 23rem;
   background: #ffffff;
   margin-top: 3rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding: 2rem;
+    > div {
+      display: none;
+    }
+    .btn {
+      width: 100%;
+    }
+  }
 }
 </style>
