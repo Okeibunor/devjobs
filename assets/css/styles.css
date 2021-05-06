@@ -19,3 +19,7 @@ body {
   color: white !important;
   text-decoration: none;
 }
+
+.dark-bg>.markdown-body {
+  color: white !important;
+}

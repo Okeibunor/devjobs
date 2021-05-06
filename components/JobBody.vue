@@ -21,7 +21,7 @@
     <div class="job-apply">
       <h3>How to Apply</h3>
       <br />
-      <div>
+      <div class="dark-bg">
         <vue-simple-markdown :source="how_to_apply"></vue-simple-markdown>
       </div>
     </div>
