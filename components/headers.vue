@@ -11,7 +11,7 @@
         <img src="@/assets/images/search.svg" alt="" />
 
         <input
-          type="text"
+          type="textborder"
           placeholder="Filter by title, companies, expertise..."
         />
       </div>
@@ -49,6 +49,7 @@ export default {
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
   @media only screen and (max-width: 1120px) {
     padding: 3rem 5vw;
+    border-radius: unset;
   }
 }
 .searchbox {
@@ -71,6 +72,8 @@ export default {
   }
 
   div {
+    display: flex;
+    align-items: center;
     vertical-align: middle;
     padding: 1rem;
     &:nth-of-type(2) {
@@ -80,7 +83,13 @@ export default {
       border-right: 2px solid #e4e4e4;
     }
     img {
+      width: 5%;
       vertical-align: middle;
+      margin-right: 0.5rem;
+    }
+    #fulltime {
+      width: 10%;
+      margin-right: 0.5rem;
     }
     label {
       display: inline-block;
@@ -90,6 +99,7 @@ export default {
   }
   input {
     height: 100%;
+    width: 100%;
     border: none;
     outline: none;
     font-family: "Lato", sans-serif;

@@ -59,10 +59,9 @@ $text_grey: rgb(179, 179, 179);
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .job_body:hover {
-  background-color: rgba(128, 0, 128, 0.027);
+  box-shadow: 0px 2px 10px#7172c4;
 }
 .logo_container {
   position: absolute;
