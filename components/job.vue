@@ -22,7 +22,12 @@
     </div>
     <div class="spacer"></div>
 
-    <div class="job_title">{{ title }}</div>
+    <div
+      class="job_title"
+      v-bind:class="[isDark ? 'dark_theme' : 'light_theme']"
+    >
+      {{ title }}
+    </div>
     <div class="spacer"></div>
 
     <div class="job_company">{{ company }}</div>
@@ -102,6 +107,12 @@ $text_grey: rgb(179, 179, 179);
   font-weight: bold;
   font-family: "Lato", sans-serif;
   font-size: 1.2rem;
+  &.dark_theme {
+    color: rgb(214, 214, 214);
+  }
+  &.light_theme {
+    color: #000;
+  }
 }
 .job_location {
   color: $text_purple;
