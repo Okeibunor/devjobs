@@ -3,6 +3,7 @@
     v-bind:id="id"
     class="job_body"
     :to="{ name: 'job-id', params: { id } }"
+    v-bind:class="[isDark ? 'dark_theme' : 'light_theme']"
     tag="div"
   >
     <div class="logo_container">
@@ -42,6 +43,9 @@ export default {
     timeAgo() {
       return moment(this.time_pub).fromNow();
     },
+    isDark() {
+      return this.$store.state.jobs.isDarkMode;
+    },
   },
 };
 </script>
@@ -50,7 +54,6 @@ export default {
 $text_purple: #7172c4;
 $text_grey: rgb(179, 179, 179);
 .job_body {
-  background-color: white;
   padding: 2.8rem 1.8rem;
   position: relative;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
@@ -59,21 +62,28 @@ $text_grey: rgb(179, 179, 179);
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  &.dark_theme {
+    background-color: #18202d;
+  }
+  &.light_theme {
+    background-color: #fff;
+  }
 }
 .job_body:hover {
   box-shadow: 0px 2px 10px#7172c4;
 }
 .logo_container {
+  opacity: 1;
   position: absolute;
   top: -20px;
   width: 60px;
   height: 60px;
-  background-color: #fff;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1.2px solid #7173c42c;
+  background-color: #18202d;
 }
 
 .company_logo {

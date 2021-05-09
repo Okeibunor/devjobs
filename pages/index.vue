@@ -1,5 +1,9 @@
 <template>
-  <div name="top" class="container">
+  <div
+    name="top"
+    class="container"
+    v-bind:class="[isDark ? 'dark_theme' : 'light_theme']"
+  >
     <headers />
     <div class="main">
       <div style="height: 150px"></div>
@@ -58,6 +62,9 @@ export default {
     request_status() {
       return this.$store.state.jobs.request_status;
     },
+    isDark() {
+      return this.$store.state.jobs.isDarkMode;
+    },
   },
   mounted() {
     this.$store.dispatch("jobs/fetchJobs");
@@ -68,11 +75,18 @@ export default {
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Lato:wght@300;400&display=swap");
 $grey_background: #f5f6f8;
-html {
-  background: $grey_background;
+$dark_background: #131722;
+body {
+  background: $dark_background;
 }
 .container {
-  background-color: $grey_background;
+  transition: background-color 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  &.dark_theme {
+    background-color: $dark_background;
+  }
+  &.light_theme {
+    background-color: $grey_background;
+  }
   position: relative;
 }
 .main {

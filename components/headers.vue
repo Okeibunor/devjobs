@@ -6,21 +6,34 @@
         <theme-switch />
       </div>
     </div>
-    <div class="searchbox">
+    <div
+      class="searchbox"
+      v-bind:class="[isDark ? 'dark_theme' : 'light_theme']"
+    >
       <div>
         <img src="@/assets/images/search.svg" alt="" />
 
         <input
           type="textborder"
+          v-bind:class="[isDark ? 'dark_theme' : 'light_theme']"
           placeholder="Filter by title, companies, expertise..."
         />
       </div>
       <div class="location">
         <img src="@/assets/images/location.svg" alt="" />
-        <input type="text" placeholder="Filter by location..." />
+        <input
+          type="text"
+          placeholder="Filter by location..."
+          v-bind:class="[isDark ? 'dark_theme' : 'light_theme']"
+        />
       </div>
       <div>
-        <input type="checkbox" id="fulltime" name="fulltime" />
+        <input
+          type="checkbox"
+          id="fulltime"
+          name="fulltime"
+          v-bind:class="[isDark ? 'dark_theme' : 'light_theme']"
+        />
         <label class="fulltime" for="fulltime"></label>
       </div>
       <div class="submit">
@@ -33,6 +46,11 @@
 <script>
 import ThemeSwitch from "./ThemeSwitch.vue";
 export default {
+  computed: {
+    isDark() {
+      return this.$store.state.jobs.isDarkMode;
+    },
+  },
   components: { ThemeSwitch },
 };
 </script>
@@ -56,10 +74,15 @@ export default {
   position: absolute;
   display: grid;
   grid-template-columns: 4fr 3.5fr 2fr 1fr;
-  background-color: #ffffff;
   border-radius: 0.4rem;
   bottom: -3rem;
   width: 77vw;
+  &.dark_theme {
+    background-color: #18202d;
+  }
+  &.light_theme {
+    background-color: #fff;
+  }
   @media only screen and (max-width: 1120px) {
     width: 90vw;
   }
@@ -105,6 +128,12 @@ export default {
     font-family: "Lato", sans-serif;
     font-size: 1rem;
     vertical-align: middle;
+    &.dark_theme {
+      background-color: #18202d;
+    }
+    &.light_theme {
+      background-color: #fff;
+    }
     &[type="submit"] {
       background: #5964e0;
       color: white;

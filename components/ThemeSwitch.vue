@@ -19,6 +19,7 @@ export default {
   methods: {
     toggleClass() {
       this.isDark = !this.isDark;
+      this.$store.dispatch("jobs/toggleDarkMode");
     },
   },
 };

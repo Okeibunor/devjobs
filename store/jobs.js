@@ -1,18 +1,23 @@
 import axios from "axios"
 
 export const state = () => ({
+  isDarkMode: true,
   jobs: [],
   job: null,
   request_status: 'pending',
 })
 
 export const getters = {
+  getDarkMode: (state) => state.isDarkMode,
   getJob: (state) => state.job,
   getJobs: (state) => state.jobs,
   getRequestStatus: (state) => state.request_status,
 }
 
 export const actions = {
+  toggleDarkMode({ commit }) {
+    commit('TOGGLE_DISPLAY')
+  },
   fetchJobs({ commit }) {
     return new Promise((resolve, reject) => {
       commit('job_request')
@@ -56,6 +61,9 @@ export const actions = {
 }
 
 export const mutations = {
+  TOGGLE_DISPLAY(state) {
+    state.isDarkMode = !state.isDarkMode
+  },
   SET_JOBS(state, data) {
     state.jobs = data
   },
