@@ -83,7 +83,7 @@ $text_grey: rgb(179, 179, 179);
   justify-content: center;
   align-items: center;
   border: 1.2px solid #7173c42c;
-  background-color: #18202d;
+  background-color: #fff;
 }
 
 .company_logo {

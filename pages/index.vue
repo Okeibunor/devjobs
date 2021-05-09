@@ -77,10 +77,10 @@ export default {
 $grey_background: #f5f6f8;
 $dark_background: #131722;
 body {
-  background: $dark_background;
+  background: $grey_background;
 }
 .container {
-  transition: background-color 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: background-color 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   &.dark_theme {
     background-color: $dark_background;
   }

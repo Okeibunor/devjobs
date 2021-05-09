@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const state = () => ({
-  isDarkMode: true,
+  isDarkMode: false,
   jobs: [],
   job: null,
   request_status: 'pending',
