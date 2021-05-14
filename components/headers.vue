@@ -74,7 +74,7 @@ export default {
     return {
       script: [
         {
-          src: `https://maps.googleapis.com/maps/api/js?key=AIzaSyD6cAaEwnxzb8PFHDKtpOCxnRt2F_Zppks&libraries=places`,
+          src: `https://maps.googleapis.com/maps/api/js?key={key}&libraries=places`,
           async: true,
           defer: true,
         },
