@@ -10,7 +10,7 @@
       class="searchbox"
       v-bind:class="[isDark ? 'dark_theme' : 'light_theme']"
     >
-      <div>
+      <div class="description">
         <img src="@/assets/images/search.svg" alt="" />
 
         <input
@@ -38,7 +38,7 @@
           </li>
         </ul>
       </div>
-      <div>
+      <div class="checkbox">
         <input
           type="checkbox"
           id="fulltime"
@@ -87,28 +87,28 @@ export default {
     },
   },
   methods: {
-    MapsInit() {
-      this.service = new window.google.maps.places.AutocompleteService();
-    },
-    displaySuggestions(predictions, status) {
-      if (status !== window.google.maps.places.PlacesServiceStatus.OK) {
-        this.searchResults = [];
-        return;
-      }
-      this.searchResults = predictions.map(
-        (prediction) => prediction.description
-      );
-    },
-    selectPlace(data) {
-      this.location = data;
-      this.searchResults = null;
-    },
+    // MapsInit() {
+    //   this.service = new window.google.maps.places.AutocompleteService();
+    // },
+    // displaySuggestions(predictions, status) {
+    //   if (status !== window.google.maps.places.PlacesServiceStatus.OK) {
+    //     this.searchResults = [];
+    //     return;
+    //   }
+    //   this.searchResults = predictions.map(
+    //     (prediction) => prediction.description
+    //   );
+    // },
+    // selectPlace(data) {
+    //   this.location = data;
+    //   this.searchResults = null;
+    // },
     searchJobs: function () {
       this.$store.dispatch("jobs/searchJobs", this.description, this.location);
     },
   },
   mounted: function () {
-    this.MapsInit();
+    // this.MapsInit();
   },
   watch: {
     location(newValue) {
@@ -161,9 +161,10 @@ export default {
     width: 90vw;
   }
   @media only screen and (max-width: 768px) {
+    grid-template-columns: 6fr 1fr;
     .location,
     .fulltime,
-    .submit {
+    .checkbox {
       display: none;
     }
   }
