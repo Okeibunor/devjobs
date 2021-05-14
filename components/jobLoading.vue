@@ -1,5 +1,10 @@
 <template>
-  <div v-on:click="openJob" v-bind:id="id" class="job_body">
+  <div
+    v-on:click="openJob"
+    v-bind:id="id"
+    class="job_body"
+    v-bind:class="[isDark ? 'dark_theme' : 'light_theme']"
+  >
     <div class="logo_container">
       <img
         v-if="logo"
@@ -36,6 +41,11 @@ export default {
       this.$router.push(`/job/${this.id}`);
     },
   },
+  computed: {
+    isDark() {
+      return this.$store.state.jobs.isDarkMode;
+    },
+  },
 };
 </script>
 
@@ -46,7 +56,6 @@ $text_grey: rgb(179, 179, 179);
 $background_grey: #e4e4e4;
 $background_grey_dark: #c9c9c9;
 .job_body {
-  background-color: white;
   padding: 2.8rem 1.8rem;
   position: relative;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
@@ -54,6 +63,12 @@ $background_grey_dark: #c9c9c9;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  &.dark_theme {
+    background-color: #18202d;
+  }
+  &.light_theme {
+    background-color: #fff;
+  }
 }
 .logo_container {
   position: absolute;

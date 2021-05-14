@@ -16,6 +16,7 @@
         <input
           type="textborder"
           v-bind:class="[isDark ? 'dark_theme' : 'light_theme']"
+          v-model="description"
           placeholder="Filter by title, companies, expertise..."
         />
       </div>
@@ -25,7 +26,17 @@
           type="text"
           placeholder="Filter by location..."
           v-bind:class="[isDark ? 'dark_theme' : 'light_theme']"
+          v-model="location"
         />
+        <ul class="places_suggestion">
+          <li
+            v-on:click="selectPlace(result)"
+            v-for="(result, i) in searchResults"
+            :key="i"
+          >
+            {{ result }}
+          </li>
+        </ul>
       </div>
       <div>
         <input
@@ -37,7 +48,12 @@
         <label class="fulltime" for="fulltime"></label>
       </div>
       <div class="submit">
-        <input type="submit" value="Search" class="btn" />
+        <input
+          v-on:click="searchJobs"
+          type="submit"
+          value="Search"
+          class="btn"
+        />
       </div>
     </div>
   </div>
@@ -46,9 +62,67 @@
 <script>
 import ThemeSwitch from "./ThemeSwitch.vue";
 export default {
+  data: () => {
+    return {
+      description: "",
+      location: "",
+      searchResults: [],
+      service: null,
+    };
+  },
+  metaInfo() {
+    return {
+      script: [
+        {
+          src: `https://maps.googleapis.com/maps/api/js?key=AIzaSyD6cAaEwnxzb8PFHDKtpOCxnRt2F_Zppks&libraries=places`,
+          async: true,
+          defer: true,
+        },
+      ],
+    };
+  },
   computed: {
     isDark() {
       return this.$store.state.jobs.isDarkMode;
+    },
+  },
+  methods: {
+    MapsInit() {
+      this.service = new window.google.maps.places.AutocompleteService();
+    },
+    displaySuggestions(predictions, status) {
+      if (status !== window.google.maps.places.PlacesServiceStatus.OK) {
+        this.searchResults = [];
+        return;
+      }
+      this.searchResults = predictions.map(
+        (prediction) => prediction.description
+      );
+    },
+    selectPlace(data) {
+      this.location = data;
+      this.searchResults = null;
+    },
+    searchJobs: function () {
+      this.$store.dispatch("jobs/searchJobs", this.description, this.location);
+    },
+  },
+  mounted: function () {
+    this.MapsInit();
+  },
+  watch: {
+    location(newValue) {
+      if (newValue) {
+        this.service.getPlacePredictions(
+          {
+            input: this.location,
+            types: ["(cities)"],
+          },
+          this.displaySuggestions
+        );
+      } else {
+        this.searchResults = null;
+      }
     },
   },
   components: { ThemeSwitch },
@@ -145,6 +219,27 @@ export default {
       border-radius: 1px;
       border: 1px solid #e8e8ea;
       outline: none;
+    }
+  }
+  .location {
+    position: relative;
+    .places_suggestion {
+      position: absolute;
+      top: 4.5rem;
+      left: 0;
+      width: 100%;
+      /* overflow-y: scroll; */
+      background: #fff;
+      z-index: 10;
+      list-style-type: none;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
+      li {
+        padding: 1rem;
+        &:hover {
+          background: rgb(212, 212, 212);
+        }
+        cursor: pointer;
+      }
     }
   }
 }

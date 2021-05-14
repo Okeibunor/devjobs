@@ -4,7 +4,8 @@ export const state = () => ({
   isDarkMode: false,
   jobs: [],
   job: null,
-  request_status: 'pending',
+  job_page: 1,
+  request_status: 'loading',
 })
 
 export const getters = {
@@ -18,10 +19,10 @@ export const actions = {
   toggleDarkMode({ commit }) {
     commit('TOGGLE_DISPLAY')
   },
-  fetchJobs({ commit }) {
+  fetchJobs({ commit, state }) {
     return new Promise((resolve, reject) => {
       commit('job_request')
-      axios.get(`/api/positions.json`)
+      axios.get(`/api/positions.json?page=${state.job_page}`)
         .then(res => {
           commit('SET_JOBS', res.data)
           commit('job_request_success')
@@ -33,16 +34,19 @@ export const actions = {
         })
     })
   },
-  fetchMoreJobs({ commit }, page) {
-    axios.get(`/api/positions.json?page=2`).then(res => {
+  fetchMoreJobs({ commit, state }) {
+    commit('job_request')
+    commit('increment_job_page')
+    axios.get(`/api/positions.json?page=${state.job_page}`).then(res => {
       commit('ADD_JOBS', res.data)
+      commit('job_request_success')
       resolve(res)
     }).catch(err => {
       commit('job_request_error', err)
       reject(err)
     })
   },
-  fetchJob({ commit, state }, id) {
+  fetchJob({ commit }, id) {
     return new Promise((resolve, reject) => {
       commit('job_request')
       axios.get(`/api/positions/${id}.json?markdown=true`)
@@ -57,10 +61,28 @@ export const actions = {
         })
     })
   },
+  searchJobs({ commit }, description, location) {
+    return new Promise((resolve, reject) => {
+      commit('job_request')
+      axios.get(`/api/positions.json?description=${description}`)
+        .then(res => {
+          commit('SET_JOBS', res.data)
+          commit('job_request_success')
+          resolve(res)
+        })
+        .catch(err => {
+          commit('job_request_error', err)
+          reject(err)
+        })
+    })
+  }
 
 }
 
 export const mutations = {
+  increment_job_page(state) {
+    state.job_page++;
+  },
   TOGGLE_DISPLAY(state) {
     state.isDarkMode = !state.isDarkMode
   },

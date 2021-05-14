@@ -33,7 +33,19 @@
 
       <div style="height: 40px"></div>
       <div class="load">
-        <button class="btn" v-on:click="loadMore">Load More</button>
+        <button
+          class="btn"
+          v-bind:class="{ loading: isLoading }"
+          v-on:click="loadMore"
+        >
+          Load More
+          <img
+            v-if="isLoading"
+            class="loader"
+            src="~/assets/images/loading.svg"
+            alt="loading image"
+          />
+        </button>
       </div>
       <div style="height: 100px"></div>
     </div>
@@ -64,6 +76,9 @@ export default {
     },
     isDark() {
       return this.$store.state.jobs.isDarkMode;
+    },
+    isLoading() {
+      return this.$store.state.jobs.request_status == "loading";
     },
   },
   mounted() {
@@ -134,6 +149,24 @@ body {
   font-family: "Lato", sans-serif;
   outline: none;
   margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  &.loading {
+    background-color: #5964e2 !important;
+  }
+  @keyframes rotateInfinite {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .loader {
+    margin-left: 0.3rem;
+    animation: 1.5s linear infinite running rotateInfinite;
+  }
 }
 .load {
   display: flex;
