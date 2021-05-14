@@ -259,6 +259,9 @@ export default {
   display: flex;
   justify-content: flex-end;
 }
+.btn {
+  -webkit-appearance: none;
+}
 .fulltime::after {
   @media only screen and (max-width: 1120px) {
     content: "Full time";
